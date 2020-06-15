@@ -1,0 +1,92 @@
+<div id="page-create-point">
+  <header>
+    <img src="../../assets/logo.svg" alt="Ecoleta">
+    <a routerLink="/">
+      <i data-feather="arrow-left"></i>
+      Voltar para home
+    </a>
+  </header>
+
+  <form (ngSubmit)="onSubmit()">
+
+    <h1>Cadastro do <br> ponto de coleta</h1>
+
+    <fieldset>
+
+      <legend>
+        <h2>Dados</h2>
+      </legend>
+
+      <div class="field">
+        <label for="name">Nome da entidade</label>
+        <input type="text" name="name" id="name" [(ngModel)]="point.name">
+      </div>
+
+      <div class="field-group">
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" [(ngModel)]="point.email">
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">Whatsapp</label>
+          <input type="text" name="whatsapp" id="whatsapp" [(ngModel)]="point.whatsapp">
+        </div>
+
+      </div>
+
+    </fieldset>
+
+    <fieldset>
+
+      <legend>
+        <h2>Endereço</h2>
+        <span>Selecione o endereço no mapa</span>
+      </legend>
+
+      <div style="height: 300px;" leaflet [leafletOptions]="leafLetOptions" [leafletLayer]="selectedPosition"
+        (leafletClick)="onMapClick($event)" [(leafletCenter)]="initialPosition"></div>
+
+      <div class="field-group">
+
+        <div class="field">
+          <label for="uf">UF</label>
+          <select name="uf" id="uf" (change)="onChangeUf()" [(ngModel)]="point.uf">
+            <option value="">Selecione uma UF</option>
+            <option *ngFor="let uf of ufs" [value]="uf.initial">{{uf.initial}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="city">Cidade</label>
+          <select name="city" id="city" [(ngModel)]="point.city">
+            <option value="">Selecione uma Cidade</option>
+            <option *ngFor="let city of citys" [value]="city.name">{{city.name}}</option>
+          </select>
+        </div>
+
+      </div>
+
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        <h2>Ítens de coleta</h2>
+        <span>Selecione um ou mais itens abaixo</span>
+      </legend>
+
+      <ul class="items-grid">
+        <li *ngFor="let item of items" (click)="onSelectItem(item)" [ngClass]="{'selected': this.point.items.includes(item.id)}">
+          <img [src]="item.image_url" [alt]="item.title">
+          <span>{{item.title}}</span>
+        </li>
+      </ul>
+
+    </fieldset>
+
+    <button type="submit">Cadastrar ponto de coleta</button>
+
+  </form>
+
+</div>

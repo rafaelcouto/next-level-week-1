@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true">
+
+  <div class="content">
+    <header>
+      <img src="../../assets/logo.png" alt="Ecoleta">
+    </header>
+
+    <main>
+      <h1>Seu marketplace de coleta de resíduos</h1>
+      <p>Ajudamos as pessoas a encontrarem pontos de coleta de forma eficiente.</p>
+
+      <div class="field">
+        <label for="uf">UF</label>
+        <select name="uf" id="uf" (change)="onChangeUf()" [(ngModel)]="data.uf">
+          <option value="">Selecione uma UF</option>
+          <option *ngFor="let uf of ufs" [value]="uf.initial">{{uf.initial}}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="city">Cidade</label>
+        <select name="city" id="city" [(ngModel)]="data.city">
+          <option value="">Selecione uma Cidade</option>
+          <option *ngFor="let city of citys" [value]="city.name">{{city.name}}</option>
+        </select>
+      </div>
+
+    </main>
+
+    <div class="footer">
+      <a (click)="enter()">
+        <span>
+          <i data-feather="arrow-right"></i>
+        </span>
+        <strong>Entrar</strong>
+      </a>
+    </div>
+  </div>
+  
+</ion-content>

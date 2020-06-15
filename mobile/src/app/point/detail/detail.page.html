@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <a routerLink="/point/list">
+      <i data-feather="arrow-left"></i>
+    </a>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="content" *ngIf="point">
+    <img [src]="point.image" alt="Foto">
+
+    <h1>{{ point.name }}</h1>
+    <p>{{ point.itemsDisplay }}</p>
+
+    <h3>Endereço</h3>
+    <p>{{this.point.city}}, {{this.point.uf}}</p>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="success" (click)="sendWhatsapp()">
+          <i data-feather="phone"></i> &nbsp;
+          Whatsapp
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="primary" (click)="sendEmail()">
+          <i data-feather="mail"></i> &nbsp;
+          Email
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-footer>

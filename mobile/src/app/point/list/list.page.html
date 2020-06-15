@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <a routerLink="/home">
+      <i data-feather="arrow-left"></i>
+    </a>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="content">
+
+    <h1>Bem vindo.</h1>
+    <p>Encontre no mapa um ponto de coleta.</p>
+
+    <div class="map" leaflet [leafletOptions]="leafLetOptions" [leafletCenter]="initialPosition"
+      [leafletLayers]="leftLetLayers"></div>
+
+    <ul class="items-grid">
+      <li *ngFor="let item of items" (click)="onSelectItem(item)"
+        [ngClass]="{'selected': this.selectedItems.includes(item.id)}">
+        <img [src]="item.image_url" [alt]="item.title">
+        <span>{{item.title}}</span>
+      </li>
+    </ul>
+
+  </div>
+  
+</ion-content>
